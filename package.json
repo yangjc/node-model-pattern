@@ -1,18 +1,29 @@
 {
-    "name": "model-pattern",
-    "version": "0.0.1",
-    "description": "Divides Model layer into three parts: Page Service, Data Service and DAO. Inspired by Baidu ODP Framework.",
-    "main": "./index.js",
-    "peerDependencies": {
-        "@yjc/db": ""
-    },
-    "keywords": [
-        "model"
-    ],
-    "author": {
-        "name": "YJC",
-        "email": "yangjiecong@live.com"
-    },
-    "license": "MIT",
-    "types": "./index.d.ts"
+  "name": "@yjc/model-pattern",
+  "version": "0.1.1",
+  "description": "Divides Model layer into three parts: Page Service, Data Service and DAO. Inspired by Baidu ODP Framework.",
+  "main": "./index.js",
+  "peerDependencies": {
+    "@yjc/db": ""
+  },
+  "keywords": [
+    "model"
+  ],
+  "author": "YJC <yangjiecong@live.com>",
+  "license": "MIT",
+  "types": "./index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node ./demo/script/useModel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangjc/node-model-pattern.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yangjc/node-model-pattern/issues"
+  },
+  "homepage": "https://github.com/yangjc/node-model-pattern#readme"
 }
