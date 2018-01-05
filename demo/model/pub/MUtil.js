@@ -10,5 +10,5 @@ exports.modelUtil = new ModelUtil(
     new ModelUtilSetter().setErrorCodes(require('../../config/error-codes'))
 );
 exports.getModelContext = getGetModelContext(
-    new ModelContextSetter().setDb(require('../../config/db'), 'test')
+    new ModelContextSetter().setMysqlPool(require('../../config/mysql')['pool-options'])
 );

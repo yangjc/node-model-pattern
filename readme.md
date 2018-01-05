@@ -5,7 +5,7 @@
 
 分层参考了百度内部框架ODP。
 
-当前只实现最简单的功能，待实践充分后补充更多的功能。数据库模块用法有更优的实践，待替换。
+当前只实现最简单的功能，待实践充分后补充更多的功能。
 
 ## 模型层业务逻辑分层
 
@@ -32,3 +32,6 @@
 
 `ModelContext`是跨层的上下文对象。通常在`page-service`实例化，透传至`dao`。
 典型的场景是在`page-service`创建数据库连接，这个连接全流程复用，最后在`page-service`销毁。
+
+`ModelContext`.`mysql`是封装后的MySQL连接池对象（用法参考[mysql](https://www.npmjs.com/package/mysql#pooling-connections)）。
+封装逻辑从[mysql2/promise](https://www.npmjs.com/package/mysql2#using-promise-wrapper)改造而来。

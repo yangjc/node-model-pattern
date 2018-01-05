@@ -2,27 +2,27 @@
  * YJC <yangjiecong@live.com> @2017-10-16
  */
 
-import { Mysql } from '@yjc/db/types/Mysql';
+import * as mysql from 'mysql';
+import { Pool as MysqlPool } from './MysqlPromise';
 
 export declare class ModelContext {
 
-    readonly db: Mysql;
+    readonly mysql: MysqlPool;
 
     public end(): Promise<void>;
 
 }
 
-declare interface SetterDb {
-    config: string | any;
-    name: string;
-    instanceGetter: (dbConfig: string | any, dbName?: string) => Mysql;
+declare interface SetterMysql {
+    module: any;
+    poolConfig: mysql.PoolConfig;
 }
 
 export declare class ModelContextSetter {
 
-    private db?: SetterDb;
+    private mysql?: SetterMysql;
 
-    public setDb(dbConfig: string | any, dbName?: string): ModelContextSetter;
+    public setMysqlPool(poolConfig: mysql.PoolConfig): ModelContextSetter;
 
 }
 

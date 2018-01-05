@@ -9,7 +9,7 @@ const { ModelDao } = require('@yjc/model-pattern');
 class DaoDemo extends ModelDao {
 
     async showTables() {
-        return await this.context.db.query('show tables');
+        return await this.context.mysql.query('show tables');
     }
 
 }

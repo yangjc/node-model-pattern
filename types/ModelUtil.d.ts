@@ -24,6 +24,6 @@ export declare class ModelUtil {
 
     public error(errorCode: number, message: string) : Error;
 
-    public assert(value: any, errorCode: number) : never;
+    public assert(value: boolean, errorCode: number) : never;
 
 }

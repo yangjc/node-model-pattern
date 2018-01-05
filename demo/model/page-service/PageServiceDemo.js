@@ -13,7 +13,14 @@ class PageServiceDemo {
         const context = getModelContext();
 
         const dataServiceDemo = new DataServiceDemo(context);
-        let result = await dataServiceDemo.testDb();
+        let result;
+        try {
+            result = await dataServiceDemo.testDb();
+        } catch (e) {
+            await context.end();
+            throw e;
+        }
+
         await context.end();
 
         modelUtil.assert(result.length > 0, modelUtil.errorCodes.E_NO_TABLES);
