@@ -1,13 +1,13 @@
 {
   "name": "@yjc/model-pattern",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Divides Model layer into three parts: Page Service, Data Service and DAO. Inspired by Baidu ODP Framework.",
   "main": "./index.js",
   "devDependencies": {
     "@types/mysql": "^2.15.2"
   },
   "peerDependencies": {
-    "mysql": "~2.15.0"
+    "@yjc/mysql": "~0.1.2"
   },
   "keywords": [
     "model"

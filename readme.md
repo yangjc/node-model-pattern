@@ -1,4 +1,4 @@
-# model-pattern
+# @yjc/model-pattern
 
 用以规范模型层逻辑。
 模型层即MVC中的“M”。对于一些纯后端的脚本，可能会没有“C”或“V”，但模型层逻辑很重，有必要划分清晰的业务层级。
@@ -34,4 +34,4 @@
 典型的场景是在`page-service`创建数据库连接，这个连接全流程复用，最后在`page-service`销毁。
 
 `ModelContext`.`mysql`是封装后的MySQL连接池对象（用法参考[mysql](https://www.npmjs.com/package/mysql#pooling-connections)）。
-封装逻辑从[mysql2/promise](https://www.npmjs.com/package/mysql2#using-promise-wrapper)改造而来。
+引用的模块[@yjc/mysql](https://www.npmjs.com/package/@yjc/mysql)，从[mysql2/promise](https://www.npmjs.com/package/mysql2#using-promise-wrapper)改造而来。

@@ -3,7 +3,7 @@
  */
 
 import * as mysql from 'mysql';
-import { Pool as MysqlPool } from './MysqlPromise';
+import { MysqlPool } from '@yjc/mysql';
 
 export declare class ModelContext {
 
