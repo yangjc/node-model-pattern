@@ -1,6 +1,6 @@
 {
   "name": "@yjc/model-pattern",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Divides Model layer into three parts: Page Service, Data Service and DAO. Inspired by Baidu ODP Framework.",
   "main": "./release/main.js",
   "devDependencies": {
@@ -13,14 +13,14 @@
   "keywords": [
     "model"
   ],
-  "author": "YJC <yangjiecong@live.com>",
+  "author": "YJC",
   "license": "MIT",
   "types": "./index.d.ts",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "prepublishOnly": "tsc -p src",
+    "prepublishOnly": "rm -rf release && tsc -p src",
     "mkdirs": "node release/script/make-dirs.js"
   },
   "repository": {

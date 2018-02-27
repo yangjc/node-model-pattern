@@ -1,32 +1,25 @@
 /**
- * YJC <yangjiecong@live.com>
+ * YJC <https://github.com/yangjc>
  */
 
 'use strict';
 
-import { ModelContext } from '../lib/ModelContext';
-import { KEY_CONTEXT } from '../inner/Const';
 import { errorCodesContainer } from '../lib/ErrorCodes';
 import { has } from '../lib/Util';
-
-export interface ContextContainer {
-    [KEY_CONTEXT]: ModelContext;
-}
+import { ModelContext, END } from '../lib/ModelContext';
 
 export class ModelPageService {
 
-    get context(): ContextContainer {
-        const container: ContextContainer = {
-            [KEY_CONTEXT]: new ModelContext(),
-        };
-        Object.defineProperty(this, 'context', { value: container });
-        return container;
+    protected assert = errorCodesContainer.assert;
+
+    get context(): ModelContext {
+        const value = new ModelContext();
+        Object.defineProperty(this, 'context', { value });
+        return value;
     }
 
     async end() {
-        has(this, 'context') && await this.context[KEY_CONTEXT].end();
+        has(this, 'context') && await this.context[END]();
     }
-
-    protected assert = errorCodesContainer.assert;
 
 }

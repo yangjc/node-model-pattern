@@ -1,42 +1,45 @@
 /**
- * YJC <yangjiecong@live.com>
+ * YJC <https://github.com/yangjc>
  */
 
 'use strict';
 
-import { PluginPack, packPlugin, ModelContext } from '../lib/ModelContext';
-import { ContextContainer } from './ModelPageService';
-import { KEY_CONTEXT } from '../inner/Const';
 import { MysqlPool } from '@yjc/mysql';
-import { getPool, endPool } from '../plugin/DbMysql';
-import { has } from '../lib/Util';
-import { errorCodesContainer } from '../lib/ErrorCodes';
 
-const mysqlPack = packPlugin<MysqlPool>('mysql', () => getPool(), endPool);
+import { errorCodesContainer } from '../lib/ErrorCodes';
+import { has } from '../lib/Util';
+import { ContextItemPack, packContextItem, ModelContext, SET_ITEM, ITEM_NAME } from '../lib/ModelContext';
+import { getPool, endPool } from '../plugin/DbMysql';
+
+const mysqlPack = packContextItem<MysqlPool>('mysql', () => getPool(), endPool);
 
 export class ModelDao {
 
-    protected setOwnProperty<T>(pack: PluginPack<T>): T {
-        if (has(this.context[KEY_CONTEXT], pack.name)) {
-            return (this.context[KEY_CONTEXT][pack.name as keyof ModelContext]) as any;
+    protected assert = errorCodesContainer.assert;
+
+    protected getContextItem<T>(pack: ContextItemPack<T>): T {
+        if (has(this.context, pack[ITEM_NAME])) {
+            return this.context[pack[ITEM_NAME]];
         }
         
-        return this.context[KEY_CONTEXT].setOwnProperty<T>(this, pack);
+        return this.context[SET_ITEM]<T>(this, pack);
     }
 
-    get context(): ContextContainer {
-        throw new Error(`${Object.getPrototypeOf(this).constructor.name}.context undefined.`);
+
+    get context(): ModelContext {
+        const name = Object.getPrototypeOf(this).constructor.name;
+        throw new Error(
+            `Should call "${name}.setContext(ModelPageService.context)" before using "${name}.context".`
+        );
     }
 
-    setContext(context: ContextContainer): this {
+    setContext(context: ModelContext): this {
         Object.defineProperty(this, 'context', { value: context });
         return this;
     }
 
     get mysql(): MysqlPool {
-        return this.setOwnProperty<MysqlPool>(mysqlPack);
+        return this.getContextItem<MysqlPool>(mysqlPack);
     }
-
-    protected assert = errorCodesContainer.assert;
 
 }

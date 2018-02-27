@@ -1,5 +1,5 @@
 /**
- * YJC <yangjiecong@live.com> @2017-12-15
+ * YJC <https://github.com/yangjc> @2017-12-15
  */
 
 'use strict';

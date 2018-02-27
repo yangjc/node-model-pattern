@@ -1,34 +1,35 @@
 /**
- * YJC <yangjiecong@live.com>
+ * YJC <https://github.com/yangjc>
  */
 
 'use strict';
 
-import { ContextContainer } from './ModelPageService';
-import { KEY_CONTEXT } from '../inner/Const';
-import { has } from '../lib/Util';
-import { ModelContext, PluginPack } from '../lib/ModelContext';
 import { errorCodesContainer } from '../lib/ErrorCodes';
+import { has } from '../lib/Util';
+import { ModelContext, ContextItemPack, ITEM_NAME, SET_ITEM } from '../lib/ModelContext';
 
 export class ModelDataService {
 
-    protected setOwnProperty<T>(pack: PluginPack<T>): T {
-        if (has(this.context[KEY_CONTEXT], pack.name)) {
-            return (this.context[KEY_CONTEXT][pack.name as keyof ModelContext]) as any;
+    protected assert = errorCodesContainer.assert;
+
+    protected getContextItem<T>(pack: ContextItemPack<T>): T {
+        if (has(this.context, pack[ITEM_NAME])) {
+            return this.context[pack[ITEM_NAME]];
         }
-        
-        return this.context[KEY_CONTEXT].setOwnProperty<T>(this, pack);
+
+        return this.context[SET_ITEM]<T>(this, pack);
     }
 
-    get context(): ContextContainer {
-        throw new Error(`${Object.getPrototypeOf(this).constructor.name}.context undefined.`);
+    get context(): ModelContext {
+        const name = Object.getPrototypeOf(this).constructor.name;
+        throw new Error(
+            `Should call "${name}.setContext(ModelPageService.context)" before using "${name}.context".`
+        );
     }
 
-    setContext(context: ContextContainer): this {
+    setContext(context: ModelContext): this {
         Object.defineProperty(this, 'context', { value: context });
         return this;
     }
-
-    protected assert = errorCodesContainer.assert;
 
 }

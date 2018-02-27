@@ -1,10 +1,10 @@
 /**
- * YJC <yangjiecong@live.com>
+ * YJC <https://github.com/yangjc>
  */
 
 'use strict';
 
-import { ModelDao, ModelSetup, PluginDbMysql, packPlugin } from '@yjc/model-pattern';
+import { ModelDao, ModelSetup, PluginDbMysql, packContextItem } from '@yjc/model-pattern';
 import { MysqlPool } from '@yjc/mysql';
 
 ModelSetup.setMysqlPoolConfig(null, {
@@ -16,12 +16,12 @@ ModelSetup.setMysqlPoolConfig(null, {
     }
 });
 
-const mysql2 = packPlugin<MysqlPool>('mysql2', () => PluginDbMysql.getPool('config-2'), PluginDbMysql.endPool);
+const mysql2 = packContextItem<MysqlPool>('mysql2', () => PluginDbMysql.getPool('config-2'), PluginDbMysql.endPool);
 
 export class MyModelDao extends ModelDao {
 
     get mysql2(): MysqlPool {
-        return this.setOwnProperty<MysqlPool>(mysql2);
+        return this.getContextItem<MysqlPool>(mysql2);
     }
 
 }

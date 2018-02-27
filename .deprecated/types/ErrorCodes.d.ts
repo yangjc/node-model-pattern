@@ -1,5 +1,5 @@
 /**
- * YJC <yangjiecong@live.com> @2017-10-16
+ * YJC <https://github.com/yangjc> @2017-10-16
  */
 
 export declare interface ErrorCodes {

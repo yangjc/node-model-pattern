@@ -1,5 +1,5 @@
 /**
- * YJC <yangjiecong@live.com>
+ * YJC <https://github.com/yangjc>
  */
 
 'use strict';
@@ -11,7 +11,7 @@ export { ModelPageService } from './base/ModelPageService';
 export { ModelDataService } from './base/ModelDataService';
 export { ModelDao } from './base/ModelDao';
 
-export { PluginPack, Getter, End, packPlugin } from './lib/ModelContext';
+export { ContextItemPack, Getter, End, packContextItem } from './lib/ModelContext';
 export { PluginDbMysql };
 
 export {
